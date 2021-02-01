@@ -1,0 +1,13 @@
+<div class="user">
+  <%=@user.name %>
+</div>
+<div class="room-list">
+  <ul class="list-group">
+    <% @rooms.each do |room| %>
+      <li class="list-group-item">
+        <%= room.name %>
+        <%= link_to 'Join...', room %>
+      </li>
+    <% end %>
+  </ul>
+</div>
