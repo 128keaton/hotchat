@@ -9,10 +9,7 @@ class MessagesController < ApplicationController
   def create
     @message = @room.messages.create!(content: message_params[:content], room: @room, user: @user)
 
-    puts @message
     respond_to do |format|
-      puts "redirecting to"
-      puts @room.name
       format.turbo_stream
       format.html { redirect_to @room }
     end

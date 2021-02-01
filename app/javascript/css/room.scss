@@ -1,0 +1,14 @@
+.room-wrapper {
+  flex: 1;
+  height: 100%;
+
+  .messages {
+    padding-left: 1em;
+    padding-right: 1em;
+    max-height: calc(90vh - 100px);
+    overflow: auto;
+  }
+
+  .navbar {
+  }
+}

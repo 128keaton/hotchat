@@ -8,7 +8,6 @@ class RoomsController < ApplicationController
   end
 
   def show
-    puts @room
   end
 
   def new
