@@ -1,9 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <%= link_to room_leave_room_path(@room), method: :post, "data-turbo-frame": "_top", class: 'nav-link icon-nav-link' do %>
     <i class="fa fa-chevron-left"></i>
-    <span class="text">Hide</span>
   <% end %>
-  <span class="navbar-brand"><%= @room.name %></span>
+  <span class="navbar-brand"><%= room_name(@room) %></span>
   <ul class="navbar-nav mr-auto">
     <li class="nav-item dropdown">
       <a class="nav-link custom-dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">

@@ -15,4 +15,21 @@ module RoomsHelper
 
     room.owner_id == user.id
   end
+
+  def room_name(room)
+    split_room_name(room)[0]
+  end
+
+  def room_id(room)
+    split = split_room_name(room)
+
+    if split.count > 1
+      "##{split[1]}"
+    end
+  end
+
+  private
+  def split_room_name(room)
+    room.name.split('#')
+  end
 end

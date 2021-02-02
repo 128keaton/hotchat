@@ -1,7 +1,8 @@
 <% unless room.id.nil? %>
   <li class="list-group-item" id="<%= dom_id room %>" data-controller="rooms">
     <%= link_to room_set_room_path(room), method: :post, data: { action: 'click->rooms#loadRoom' } do %>
-      <%= room.name %>
+      <span class="room-name"><%= room_name(room) %></span>
+      <span class="room-id"><%= room_id(room) %></span>
     <% end %>
   </li>
 <% end %>

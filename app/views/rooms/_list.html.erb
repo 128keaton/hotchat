@@ -15,6 +15,10 @@
   <div class="actions">
     <%= link_to 'Logout', logout_path, class: 'text-danger' %>
 
+    <div class="user-name">
+      <span class="text-secondary"><%= @user.name %></span>
+    </div>
+
     <div class="room-count">
       <%= turbo_stream_from "room" %>
 

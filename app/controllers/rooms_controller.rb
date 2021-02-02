@@ -33,7 +33,8 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create!(room_params.merge(owner_id: @user.id))
+    name = "#{room_params[:name]}##{rand.to_s[2..6]}"
+    @room = Room.create!(owner_id: @user.id, name: name)
 
     respond_to do |format|
       format.turbo_stream

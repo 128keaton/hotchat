@@ -6,12 +6,10 @@ class AuthController < ApplicationController
   end
 
   def login
-    user = User.find_by(user_params)
+    name = "#{user_params[:name]}##{rand.to_s[2..6]}"
 
-    unless user
-      user = User.new(user_params)
-      user.save
-    end
+    user = User.new(user_params.merge(name: name))
+    user.save
 
     chat_session = ChatSession.find_by(user_id: user.id)
 
