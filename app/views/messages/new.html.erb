@@ -2,12 +2,15 @@
 
 <%= turbo_frame_tag "new_message", target: "_top" do %>
   <%= form_with(model: [ @message.room, @message ],
-                data: { controller: "form", action: "turbo:submit-end->form#reset" }) do |form| %>
+                class: "new-message-form",
+                data: { controller: "messages", action: "turbo:submit-end->messages#reset" }) do |form| %>
 
     <div class="field">
       <%= form.label :content, nil, class: 'sr-only' %>
       <%= form.text_field :content, class: 'form-control mb-3', placeholder: 'Message', autofill: 'off', autocomplete: 'off' %>
-      <%= form.submit "Send", class: 'btn btn-lg btn-primary btn-block' %>
+      <%= button_tag "Send", class: 'btn btn-lg btn-primary btn-block send-button' do %>
+      <i class="fa fa-arrow-up"></i>
+      <% end %>
     </div>
   <% end %>
 <% end %>

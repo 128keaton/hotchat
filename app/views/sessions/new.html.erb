@@ -1,12 +1,23 @@
 <div class="sessions">
-  <%= form_tag('/login', { method: 'POST', class: 'form-signin' }) do %>
+  <%= form_with(model: @user,
+                class: 'form-signin',
+                html: {
+                  novalidate: true
+                },
+                data: {
+                  remote: true,
+                  controller: 'session',
+                  target: 'form.form-signin',
+                  action: 'ajax:beforeSend->session#submitForm'
+                }) do |form| %>
 
     <%= image_pack_tag('media/images/hotchat-logo.svg', class: 'mb-4 logo', width: '102', height: '102') %>
     <h1 class="h1 mb-2 font-weight-bold">Hotchat</h1>
     <h3 class="h5 mb-4 w-100 font-weight-light">Create a username to get started</h3>
 
-    <%= label_tag :username, nil, class: 'sr-only' %>
-    <%= text_field_tag :username, nil, class: 'form-control mb-3', placeholder: 'Username', autofill: 'off', autocomplete: 'off' %>
+    <span class="form-error">Username must be longer than 5 characters!</span>
+    <%= form.label :name, nil, class: 'sr-only' %>
+    <%= form.text_field :name, class: 'form-control mb-3', placeholder: 'Username', autofill: 'off', autocomplete: 'off', required: true %>
 
 
     <%= button_tag "Sign in", class: 'btn btn-lg btn-primary btn-block'%>

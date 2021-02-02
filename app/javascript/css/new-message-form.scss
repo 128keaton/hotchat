@@ -1,0 +1,25 @@
+.new-message-form {
+  width: calc(100% - 8px);
+  margin: 0 auto;
+
+  .field {
+    position: relative;
+
+
+    button {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border-radius: 100%;
+      position: absolute;
+      right: 4px;
+      top: 4px
+    }
+
+    input {
+      height: 40px;
+      width: 100%;
+      border-radius: 25px;
+    }
+  }
+}

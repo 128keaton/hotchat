@@ -1,3 +1,11 @@
-<p id="<%= dom_id message %>">
-  At <%= message.created_at.to_s(:short) %> <%= message.user.name %> said: <%= message.content %>
-</p>
+<div class="message <%= message_class(message, @user) %>" id="<%= dom_id message %>">
+  <div class="meta top">
+    <span class="created-at text-secondary"><%= message.created_at.to_s(:short) %></span>
+  </div>
+  <div class="content">
+    <%= message.content %>
+  </div>
+  <div class="meta bottom">
+    <span class="created-at text-secondary"><%= message.user.name %></span>
+  </div>
+</div>

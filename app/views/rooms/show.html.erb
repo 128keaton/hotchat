@@ -1,19 +1,31 @@
-<div class="room-wrapper">
-  <%= turbo_stream_from @room %>
+<%= turbo_stream_from @room %>
 
+<div class="room-wrapper" data-controller="rooms">
   <%= turbo_frame_tag "room" do %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <%= link_to 'Back', rooms_path, "data-turbo-frame": "_top", class: 'nav-link' %>
-      <a class="navbar-brand" href="#"><%= @room.name %></a>
+      <%= link_to rooms_path, "data-turbo-frame": "_top", class: 'nav-link icon-nav-link' do %>
+        <i class="fa fa-chevron-left"></i>
+        <span class="text">Back</span>
+      <% end %>
+      <span class="navbar-brand"><%= @room.name %></span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <% if is_owner(@room, @user) %>
+        <%= link_to @room, method: :delete, class: 'btn text-danger' do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      <% end %>
     </nav>
   <% end %>
 
-  <div class="messages" id="messages">
-    <%= render @room.messages %>
-  </div>
+  <div class="inner-room" id="<%= dom_id(@room) %>">
+    <div class="messages" id="messages">
+      <%= render @room.messages %>
+    </div>
 
-  <%= turbo_frame_tag "new_message", src: new_room_message_path(@room), target: "_top" %>
+
+    <%= turbo_frame_tag "new_message", src: new_room_message_path(@room), target: "_top" %>
+  </div>
 </div>

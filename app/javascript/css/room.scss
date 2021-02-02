@@ -1,14 +1,53 @@
 .room-wrapper {
   flex: 1;
   height: 100%;
+  border-radius: 25px;
+  box-shadow:  19px 19px 55px #cccccc,
+  -19px -19px 55px #f4f4f4;
+
+  max-width: 800px;
+  max-height: 800px;
+  position: relative;
+  overflow: hidden;
+
+  .inner-room {
+    height: 100%;
+  }
 
   .messages {
-    padding-left: 1em;
-    padding-right: 1em;
-    max-height: calc(90vh - 100px);
-    overflow: auto;
+    width: 95%;
+    margin: 0 auto;
+    height: calc(100% - 100px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 17px;
+    box-sizing: content-box;
+    padding-left: 17px;
+
   }
 
   .navbar {
+    .navbar-brand {
+      flex: 1;
+      text-align: center;
+    }
+
+    .icon-nav-link {
+      padding-left: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .fa {
+       font-size: 1.2em!important;
+      }
+
+      .text {
+        margin-left: 0.5rem;
+      }
+    }
   }
 }
