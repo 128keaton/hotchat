@@ -1,5 +1,10 @@
 class SessionsController < ApplicationController
-  before_action :set_user, only: %i[ logout index ]
+  before_action :set_user, only: %i[ logout home ]
+
+  def home
+    @rooms = Room.all
+    @room = Room.new
+  end
 
   def new
     @user = User.new

@@ -8,6 +8,12 @@ class RoomsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.turbo_stream {
+        return render turbo_stream: turbo_stream.append('room', @room)
+      }
+      format.html
+    end
   end
 
   def new
@@ -23,10 +29,11 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.turbo_stream
       format.html {
-        return redirect_to index
+        return redirect_to @room
       }
     end
   end
+
 
   def destroy
     @room.destroy

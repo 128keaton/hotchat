@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
 
-  root to: 'rooms#index'
+  root to: 'sessions#home'
 
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#logout'

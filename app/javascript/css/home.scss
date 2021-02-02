@@ -1,0 +1,10 @@
+.home {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  .rooms-wrapper {
+    min-width: 250px;
+    min-height: 250px;
+    border: 1px solid black;
+  }
+}

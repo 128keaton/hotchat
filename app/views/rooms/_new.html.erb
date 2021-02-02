@@ -9,6 +9,7 @@
           </button>
         </div>
         <%= form_with(model: @room,
+                      url: rooms_path,
                       class: 'form-room-new',
                       html: {
                         novalidate: true
