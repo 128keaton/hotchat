@@ -29,7 +29,9 @@ export default class extends Controller {
         }, 1000);
         this.messages.on('scroll', () => {
             this.scrolled = !(this.messages[0].scrollHeight - this.messages.scrollTop() === this.messages.outerHeight());
-        })
+        });
+
+        $('#send').focus();
     }
 
 }

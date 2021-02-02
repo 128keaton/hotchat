@@ -1,5 +1,5 @@
 <li class="list-group-item" id="<%= dom_id room %>">
-  <%= link_to room do %>
-    <%= room.name %>
-  <%end %>
+    <%= link_to room_path(room) do %>
+      <%= room.name %>
+    <% end %>
 </li>

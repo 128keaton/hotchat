@@ -9,10 +9,14 @@
       <%= form.label :content, nil, class: 'sr-only' %>
       <%= form.text_field :content, class: 'form-control mb-3', placeholder: 'Message', autofill: 'off', autocomplete: 'off', data: { target: "emoji-picker.input" } %>
 
-      <%= button_tag 'Emoji', class: 'btn btn-lg emoji-button btn-primary btn-block', data: { action: 'emoji-picker#toggle', target: 'emoji-picker.button' } do %>
-        😀
+      <%= button_tag "Send", class: 'btn btn-lg btn-primary btn-block send-button send-button', id: "send" do %>
+        <i class="fa fa-arrow-up"></i>
       <% end %>
-      <%= button_tag "Send", class: 'btn btn-lg btn-primary btn-block send-button' do %>
+
+      <%= button_tag 'Emoji', class: 'btn btn-lg emoji-button btn-primary btn-block', data: { action: 'emoji-picker#toggle', target: 'emoji-picker.button' } do %>
+        <i class="emoji">😀</i>
+      <% end %>
+      <%= button_tag "Send", class: 'btn btn-lg btn-primary btn-block send-button', id: "send" do %>
         <i class="fa fa-arrow-up"></i>
       <% end %>
     </div>

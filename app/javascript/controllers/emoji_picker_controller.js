@@ -7,8 +7,10 @@ export default class extends Controller {
     connect() {
         this.picker = new EmojiButton()
         this.picker.on('emoji', selection => {
-            this.buttonTarget.innerHTML = selection.emoji
-            this.inputTarget.value = selection.emoji
+            console.log(selection);
+
+            this.buttonTarget.innerHTML = `<i class="emoji">${selection.emoji}</i>`
+            this.inputTarget.value +=  selection.emoji;
         })
     }
 

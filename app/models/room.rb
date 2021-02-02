@@ -1,7 +1,6 @@
 class Room < ApplicationRecord
   has_many :messages
   has_many :users, through: :messages, dependent: false
-  belongs_to :owner, class_name: 'User'
 
   broadcasts
    after_create_commit -> { broadcast_append_to :rooms }

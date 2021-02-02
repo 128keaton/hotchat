@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_225827) do
+ActiveRecord::Schema.define(version: 2021_02_02_171616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,21 +23,20 @@ ActiveRecord::Schema.define(version: 2021_02_01_225827) do
     t.bigint "room_id"
   end
 
-  create_table "room_listings", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "room_id"
-  end
-
   create_table "rooms", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "messages_id"
-    t.bigint "owner_id", null: false
-    t.bigint "room_listing_id"
     t.index ["id", "name"], name: "index_rooms_on_id_and_name", unique: true
     t.index ["messages_id"], name: "index_rooms_on_messages_id"
+  end
+
+  create_table "rooms_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.index ["room_id", "user_id"], name: "index_rooms_users_on_room_id_and_user_id"
+    t.index ["user_id", "room_id"], name: "index_rooms_users_on_user_id_and_room_id"
   end
 
   create_table "users", force: :cascade do |t|

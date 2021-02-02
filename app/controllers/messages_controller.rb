@@ -6,14 +6,17 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @room.messages.create!(content: message_params[:content], room: @room, user: @user)
-    @user = @user
+    unless message_params[:content].to_s.strip.empty?
 
-    respond_to do |format|
-      format.turbo_stream {
-        return render turbo_stream: turbo_stream.replace(@message), locals: {user: @user}
-      }
-      format.html { redirect_to @room }
+      @message = @room.messages.create!(content: message_params[:content], room: @room, user: @user)
+      @user = @user
+
+      respond_to do |format|
+        format.turbo_stream {
+          return render turbo_stream: turbo_stream.replace(@message), locals: { user: @user }
+        }
+        format.html { redirect_to @room }
+      end
     end
   end
 
@@ -30,7 +33,6 @@ class MessagesController < ApplicationController
 
     @room = Room.find(params[:room_id])
   end
-
 
   def message_params
     params.require(:message).permit(:content)

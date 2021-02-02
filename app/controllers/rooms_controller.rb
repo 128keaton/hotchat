@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :require_session_id
-  before_action :set_room, only: %i[ show edit update destroy ]
+  before_action :set_room, only: %i[ show edit update destroy leave_room ]
 
   def index
     @rooms = Room.all
@@ -8,6 +8,15 @@ class RoomsController < ApplicationController
   end
 
   def show
+  end
+
+  def leave_room
+    if @room.users.count === 1
+      @room.messages.destroy_all
+      @room.destroy
+    end
+
+    redirect_to index
   end
 
   def new
@@ -18,7 +27,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create!(name: room_params, owner_id: @user.id)
+    @room = Room.create!(name: room_params)
 
     respond_to do |format|
       format.turbo_stream
@@ -41,8 +50,14 @@ class RoomsController < ApplicationController
   private
 
   def set_room
+    room_id = params[:id]
+
+    if room_id.nil?
+      room_id = params[:room_id]
+    end
+
     begin
-      @room = Room.find(params[:id])
+      @room = Room.find(room_id)
 
     rescue
       redirect_to rooms_path
@@ -54,6 +69,7 @@ class RoomsController < ApplicationController
   end
 
   def require_session_id
+    puts session[:current_user_id]
     current_user_id = session[:current_user_id]
 
     begin
