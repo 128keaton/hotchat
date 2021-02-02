@@ -1,11 +1,17 @@
 class Room < ApplicationRecord
   has_many :messages
-  has_many :users, through: :messages, dependent: false
+  has_many :users, -> { distinct }, through: :messages, dependent: false
 
   broadcasts
-   after_create_commit -> { broadcast_append_to :rooms }
-   after_destroy_commit -> {
-     broadcast_remove_to :rooms
-     broadcast_remove_to self
-   }
+
+  after_create_commit -> {
+    broadcast_action_to('room', action: :replace, target: "room_count", partial: "rooms/count", locals: {rooms: Room.all})
+    broadcast_append_to :rooms
+  }
+
+  after_destroy_commit -> {
+    broadcast_action_to('room', action: :replace, target: "current_room", partial: "rooms/empty")
+    broadcast_action_to('room', action: :replace, target: "room_count", partial: "rooms/count", locals: {rooms: Room.all})
+    broadcast_remove_to :rooms
+  }
 end

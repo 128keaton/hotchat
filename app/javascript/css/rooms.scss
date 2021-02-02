@@ -1,38 +1,46 @@
-.rooms-list-wrapper {
-  flex: 1;
-  height: 100%;
-  border-radius: 25px;
-  box-shadow:  19px 19px 55px #cccccc,
-  -19px -19px 55px #f4f4f4;
+.rooms-list {
+  display: flex;
+  flex-direction: column;
 
-  max-width: 800px;
-  max-height: 800px;
-  position: relative;
-  overflow: hidden;
+  .list-group-item {
+    border-right: none;
+  }
 
   .navbar {
+    .nav-link {
+      position: absolute;
+      right: -0.5rem;
+    }
+
     .navbar-brand {
       flex: 1;
       text-align: center;
-      margin: 0;
+    }
+  }
+
+  #rooms {
+    flex: 1;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 59px;
+    background-color: #ececec;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+
+    a {
+      padding: 1em;
     }
 
-    .navbar-collapse,   .nav-link  {
-      flex: 1;
-    }
-
-    .dropdown-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .dropdown-logout {
-      color: red;
-    }
-
-    .nav-link:last-child {
-      text-align: right;
+    .total-rooms {
+      padding: 1rem;
+      text-align: center;
+      margin-left: auto;
     }
   }
 }

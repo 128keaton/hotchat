@@ -1,0 +1,26 @@
+<div class="rooms-list">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand text-secondary">Rooms</span>
+    <a class="nav-link icon-nav-link" data-toggle="modal" data-target="#newRoomModal">
+      <i class="fa fa-plus"></i>
+    </a>
+  </nav>
+
+  <%= turbo_stream_from "rooms" %>
+  <%= turbo_frame_tag 'rooms' do %>
+    <%= render rooms %>
+  <% end %>
+
+
+  <div class="actions">
+    <%= link_to 'Logout', logout_path, class: 'text-danger' %>
+
+    <div class="room-count">
+      <%= turbo_stream_from "room" %>
+
+      <%= render partial: 'rooms/count', locals: {rooms: @rooms} %>
+    </div>
+  </div>
+
+  <%= render 'rooms/new' %>
+</div>

@@ -1,0 +1,10 @@
+<div class="room-wrapper" data-controller="rooms" id="current_room" data-room-id="<%= @room.id %>">
+  <%= render 'rooms/nav' %>
+
+  <%= turbo_stream_from @room %>
+  <div class="messages" id="messages">
+    <%= render @room.messages %>
+  </div>
+
+  <%= turbo_frame_tag "new_message", src: new_room_message_path(@room), target: "_top" %>
+</div>

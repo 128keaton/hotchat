@@ -1,22 +1,28 @@
 class RoomsController < ApplicationController
-  before_action :require_session_id
-  before_action :set_room, only: %i[ show edit update destroy leave_room ]
+  before_action :set_room, only: %i[  destroy  ]
 
-  def index
-    @rooms = Room.all
-    render 'list'
-  end
 
-  def show
+  def emit_room
+    set_room
+    update_room_session(@room.id, @session)
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("current_room", partial: "messages", locals: { room: @room }) }
+      format.html { redirect_to root_path }
+    end
   end
 
   def leave_room
-    if @room.users.count === 1
-      @room.messages.destroy_all
-      @room.destroy
-    end
+    update_room_session(nil, @session)
 
-    redirect_to index
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("current_room", partial: "empty") }
+      format.html { redirect_to root_path }
+    end
+  end
+
+  def count_rooms
+    render json: {total: Room.all.count}
   end
 
   def new
@@ -27,7 +33,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create!(name: room_params)
+    @room = Room.create!(room_params.merge(owner_id: @user.id))
 
     respond_to do |format|
       format.turbo_stream
@@ -39,15 +45,22 @@ class RoomsController < ApplicationController
 
   def destroy
     @room.destroy
+    update_room_session(nil, @session)
+
     respond_to do |format|
-      format.turbo_stream
-      format.html {
-        return redirect_to root_path
+      format.turbo_stream {
+        # render turbo_stream: turbo_stream.replace("current_room", partial: "empty")
       }
+      format.html { redirect_to root_path }
     end
   end
 
   private
+
+  def update_room_session(room_id, session)
+    session.room_id = room_id
+    session.save
+  end
 
   def set_room
     room_id = params[:id]
@@ -60,22 +73,11 @@ class RoomsController < ApplicationController
       @room = Room.find(room_id)
 
     rescue
-      redirect_to rooms_path
+      redirect_to root_path
     end
   end
 
   def room_params
-    params.require(:name)
-  end
-
-  def require_session_id
-    puts session[:current_user_id]
-    current_user_id = session[:current_user_id]
-
-    begin
-      @user = User.find(current_user_id)
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to login_path
-    end
+    params.require(:room).permit(:name)
   end
 end

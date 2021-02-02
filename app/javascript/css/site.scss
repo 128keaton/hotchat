@@ -1,14 +1,24 @@
 @import "~bootstrap/scss/bootstrap";
 
 
+html {
+  overflow: hidden;
+}
+
 html, body {
   height: 100%;
 }
 
 body {
+  background: white;
+  overflow: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  overscroll-behavior-y: none;
+  *::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .logo {
@@ -20,3 +30,37 @@ body {
 @import "message";
 @import "new-message-form";
 @import "rooms";
+
+.base {
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 800px;
+  border-radius: 25px;
+  box-shadow:  28px 28px 56px #c4c4c4,
+  -28px -28px 56px #ffffff;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+
+  .rooms-list {
+    flex: 4;
+    min-width: 250px;
+  }
+
+  .current-room {
+    flex: 8;
+    min-width: 50%;
+
+    .messages-placeholder {
+      height: calc(100% - 115px);
+    }
+
+    .message-form-placeholder {
+      width: 100%;
+      height: 59px;
+      margin: 0 auto;
+      background-color: #ececec;
+    }
+  }
+}

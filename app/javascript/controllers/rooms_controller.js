@@ -13,13 +13,32 @@ export default class extends Controller {
 
             error.addClass('form-error-show');
         } else {
+            error.removeClass('form-error-show');
+            this.clearForm();
             $('#newRoomModal').modal('hide');
         }
 
     }
 
-    onBeforeDelete(e) {
+    loadRoom() {
+        const $body = $('body');
+        const forms = $body.find('form');
 
+
+        $(".emoji-picker__wrapper").remove();
+
+        if (forms.length > 1) {
+            $(forms[forms.length - 1]).remove();
+        }
+
+        setTimeout(() => {
+            const messages = $('.messages');
+            const messageForm = $('.new-message-form');
+
+            messages.addClass('show');
+            messageForm.addClass('show');
+
+        }, 150);
     }
 
     validateForm() {
@@ -38,5 +57,14 @@ export default class extends Controller {
 
 
         return isValid;
+    }
+
+    clearForm() {
+        let fieldSelectors = 'input';
+        let fields = this.element.querySelectorAll(fieldSelectors);
+
+        fields.forEach((field) => {
+            field.value = '';
+        });
     }
 }

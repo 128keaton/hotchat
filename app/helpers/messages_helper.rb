@@ -4,7 +4,6 @@ module MessagesHelper
       return 'self-message'
     end
 
-    puts session.inspect
     'other-message'
   end
 end

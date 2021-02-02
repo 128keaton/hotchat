@@ -1,15 +1,15 @@
 class MessagesController < ApplicationController
-  before_action :set_room_and_user, only: %i[ new create ]
+  before_action :set_room
 
   def new
+    puts "NEW: #{@user.inspect}"
     @message = @room.messages.new
   end
 
   def create
+    puts "CREATE: #{@user.inspect}"
     unless message_params[:content].to_s.strip.empty?
-
       @message = @room.messages.create!(content: message_params[:content], room: @room, user: @user)
-      @user = @user
 
       respond_to do |format|
         format.turbo_stream {
@@ -22,16 +22,8 @@ class MessagesController < ApplicationController
 
   private
 
-  def set_room_and_user
-    current_user_id = session[:current_user_id]
-
-    begin
-      @user = User.find(current_user_id)
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to login_path
-    end
-
-    @room = Room.find(params[:room_id])
+  def set_room
+    @room = Room.find(@session.room_id)
   end
 
   def message_params

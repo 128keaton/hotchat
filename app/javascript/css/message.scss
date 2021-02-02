@@ -6,6 +6,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: baseline;
+  opacity: 0;
+  transition: opacity 100ms ease-in-out;
+
+  &.show {
+    opacity: 1;
+  }
 
   .content {
     word-wrap: break-word;
