@@ -30,7 +30,12 @@ class RoomsController < ApplicationController
 
   def destroy
     @room.destroy
-    redirect_to root_path, notice: 'Room was successfully destroyed.'
+    respond_to do |format|
+      format.turbo_stream
+      format.html {
+        return redirect_to root_path
+      }
+    end
   end
 
   private

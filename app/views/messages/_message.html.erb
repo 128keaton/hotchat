@@ -6,6 +6,10 @@
     <%= message.content %>
   </div>
   <div class="meta bottom">
-    <span class="created-at text-secondary"><%= message.user.name %></span>
+    <% if not message.user.nil? %>
+      <span class="created-at text-secondary"><%= message.user.name %></span>
+    <% else %>
+      <span class="created-at text-secondary">Unknown</span>
+    <% end %>
   </div>
 </div>

@@ -1,15 +1,19 @@
 <h1>New Message</h1>
 
 <%= turbo_frame_tag "new_message", target: "_top" do %>
-  <%= form_with(model: [ @message.room, @message ],
+  <%= form_with(model: [@message.room, @message],
                 class: "new-message-form",
                 data: { controller: "messages", action: "turbo:submit-end->messages#reset" }) do |form| %>
 
-    <div class="field">
+    <div class="field" data-controller="emoji-picker">
       <%= form.label :content, nil, class: 'sr-only' %>
-      <%= form.text_field :content, class: 'form-control mb-3', placeholder: 'Message', autofill: 'off', autocomplete: 'off' %>
+      <%= form.text_field :content, class: 'form-control mb-3', placeholder: 'Message', autofill: 'off', autocomplete: 'off', data: { target: "emoji-picker.input" } %>
+
+      <%= button_tag 'Emoji', class: 'btn btn-lg emoji-button btn-primary btn-block', data: { action: 'emoji-picker#toggle', target: 'emoji-picker.button' } do %>
+        😀
+      <% end %>
       <%= button_tag "Send", class: 'btn btn-lg btn-primary btn-block send-button' do %>
-      <i class="fa fa-arrow-up"></i>
+        <i class="fa fa-arrow-up"></i>
       <% end %>
     </div>
   <% end %>
