@@ -81,6 +81,3 @@ test:
 #
 production:
   <<: *default
-  database: hotchat_production
-  username: hotchat
-  password: <%= ENV['HOTCHAT_DATABASE_PASSWORD'] %>
