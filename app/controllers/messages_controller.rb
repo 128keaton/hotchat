@@ -2,12 +2,10 @@ class MessagesController < ApplicationController
   before_action :set_room
 
   def new
-    puts "NEW: #{@user.inspect}"
     @message = @room.messages.new
   end
 
   def create
-    puts "CREATE: #{@user.inspect}"
     unless message_params[:content].to_s.strip.empty?
       @message = @room.messages.create!(content: message_params[:content], room: @room, user: @user)
 

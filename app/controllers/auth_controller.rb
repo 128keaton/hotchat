@@ -6,7 +6,6 @@ class AuthController < ApplicationController
   end
 
   def login
-    puts params
     user = User.find_by(user_params)
 
     unless user
