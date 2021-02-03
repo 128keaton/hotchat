@@ -7,20 +7,20 @@ class ApplicationController < ActionController::Base
   def set_session
     invalid_session = false
 
-    if not session[:chat_session].nil?
-      begin
+    begin
+      if not session[:chat_session].nil?
         chat_session = ChatSession.find(session[:chat_session])
-      rescue
-        invalid_session = true
-      end
 
-      if chat_session.nil? or chat_session.user_id.nil?
-        invalid_session = true
+        if chat_session.nil? or chat_session.user_id.nil?
+          invalid_session = true
+        else
+          @session = chat_session
+          @user = User.find(chat_session.user_id)
+        end
       else
-        @session = chat_session
-        @user = User.find(chat_session.user_id)
+        invalid_session = true
       end
-    else
+    rescue
       invalid_session = true
     end
 
