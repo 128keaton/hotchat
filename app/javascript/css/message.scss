@@ -49,9 +49,26 @@
     }
   }
 
+  &.emoji-message {
+    .content {
+      background: transparent !important;
+      font-size: 3em;
+
+      &:before, &:after {
+        border: none !important;
+        background: transparent !important;
+      }
+    }
+  }
+
   &.self-message {
     align-items: flex-end;
     text-align: right;
+
+    .meta.bottom {
+      display: none;
+    }
+
     .content {
       color: white;
       background: #0B93F6;
@@ -59,7 +76,7 @@
 
       &:before {
         right: -7px;
-        left: unset!important;
+        left: unset !important;
         border-left: unset;
         border-right: 20px solid #0B93F6;
         border-bottom-left-radius: 16px 14px;
@@ -68,11 +85,11 @@
 
       &:after {
         right: -56px;
-        left: unset!important;
+        left: unset !important;
         width: 26px;
         background: white;
         border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 0!important;
+        border-bottom-right-radius: 0 !important;
         transform: translate(-30px, -2px) !important;
       }
     }

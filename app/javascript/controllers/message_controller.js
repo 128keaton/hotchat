@@ -36,6 +36,14 @@ export default class extends Controller {
             $(this.element).addClass('self-message');
         }
 
+        const emojiRegex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g
+        const messageContent = $(this.element).find('.content').text().trim()
+        const emojiMatches = messageContent.match(emojiRegex);
+
+        if (emojiMatches && emojiMatches.length === 1 && messageContent.replace(emojiMatches[0], '').length === 0) {
+            $(this.element).addClass('emoji-message');
+        }
+
         setTimeout(() => {
             $(this.element).addClass('show');
         }, 100);
