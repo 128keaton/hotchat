@@ -13,14 +13,34 @@
         padding: 0.6em 1em;
       }
 
+      a {
+        color: #007bff !important;
+        text-decoration: none !important;
+        transition: opacity 150ms ease-in-out;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
       input {
         border-radius: 25px;
         height: 45px;
-        margin-bottom: 2em;
+        margin-bottom: 1em;
 
         @media (prefers-color-scheme: dark) {
           background-color: #343a40;
           color: white;
+        }
+      }
+
+      .input-wrapper {
+        position: relative;
+
+        a {
+          position: absolute;
+          right: 1em;
+          top: 0.6em;
         }
       }
 

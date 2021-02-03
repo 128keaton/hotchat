@@ -1,8 +1,17 @@
 import {Controller} from 'stimulus';
 import $ from 'jquery';
 
+const nameGenerator = require('@afuggini/namegenerator');
+
 export default class extends Controller {
     static targets = ['form'];
+
+
+    initialize() {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    }
 
     submitForm(event) {
         const errorStatus = this.validateForm(this.element);
@@ -52,6 +61,15 @@ export default class extends Controller {
         }
     }
 
+    generateRandomName(event) {
+        const roomName = nameGenerator(' ');
+        const roomNameInput = $('input:required');
+
+        roomNameInput.val(this.titleize(roomName));
+
+        event.preventDefault();
+    }
+
     validateForm() {
         const invalidRegex = /[^\x20-\x7E]+/g;
 
@@ -88,5 +106,18 @@ export default class extends Controller {
         fields.forEach((field) => {
             field.value = '';
         });
+    }
+
+    titleize(sentence) {
+        if (!sentence.split) return sentence;
+        const _titleizeWord = function (string) {
+                return string[0].toUpperCase() + string.slice(1).toLowerCase();
+            },
+            result = [];
+        sentence.split(" ").forEach(function (w) {
+            result.push(_titleizeWord(w));
+        });
+
+        return result.join(" ");
     }
 }

@@ -21,8 +21,14 @@
           <span class="form-error form-error-long">Room name cannot be longer than 15 characters!</span>
           <span class="form-error form-error-invalid-characters">Room name cannot contain invalid characters!</span>
 
-          <%= form.label :name, nil, class: 'sr-only' %>
-          <%= form.text_field :name, class: 'form-control', placeholder: 'Room Name', autofill: 'off', autocomplete: 'off', required: true %>
+          <div class="input-wrapper">
+            <%= form.label :name, nil, class: 'sr-only' %>
+            <%= form.text_field :name, class: 'form-control', placeholder: 'Room Name', autofill: 'off', autocomplete: 'off', required: true %>
+
+            <a data-action="click->rooms#generateRandomName" href="#" data-toggle="tooltip" data-placement="top" title="Generate Name">
+              <i class="fa fa-magic"></i>
+            </a>
+          </div>
         </div>
 
         <div class="modal-footer">
