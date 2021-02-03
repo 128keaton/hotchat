@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :rooms do
     post 'leave', to: 'rooms#leave_room', as: 'leave-room'
     post 'set', to: 'rooms#emit_room', as: 'set-room'
+    post 'clear', to: 'rooms#clear_messages', as: 'clear-messages'
     resources :messages
   end
 

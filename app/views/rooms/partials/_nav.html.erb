@@ -25,7 +25,12 @@
 
         <% if is_owner(@room, @user) %>
           <div class="dropdown-item action">
-            <%= link_to 'Delete', @room, method: :delete %>
+            <%= link_to 'Delete', @room, method: :delete, confirm: 'Are you sure?' %>
+          </div>
+        <% end %>
+        <% if is_owner(@room, @user) %>
+          <div class="dropdown-item action">
+            <%= link_to 'Clear', room_clear_messages_path(@room), method: :post, confirm: 'Are you sure?' %>
           </div>
         <% end %>
       </div>

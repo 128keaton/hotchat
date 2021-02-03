@@ -1,6 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[  destroy  ]
-
+  before_action :set_room, only: %i[  destroy clear_messages  ]
 
   def emit_room
     set_room
@@ -21,8 +20,14 @@ class RoomsController < ApplicationController
     end
   end
 
+  def clear_messages
+    if @user.id === @room.owner_id
+      @room.messages.destroy_all
+    end
+  end
+
   def count_rooms
-    render json: {total: Room.all.count}
+    render json: { total: Room.all.count }
   end
 
   def new
@@ -45,12 +50,14 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    @room.destroy
-    update_room_session(nil, @session)
+    if @user.id === @room.owner_id
+      @room.destroy
+      update_room_session(nil, @session)
 
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to root_path }
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to root_path }
+      end
     end
   end
 
