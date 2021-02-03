@@ -5,7 +5,7 @@ export default class extends Controller {
     static targets = [ "button", "input" ]
 
     connect() {
-        this.picker = new EmojiButton()
+        this.picker = new EmojiButton({theme: "auto"})
         this.picker.on('emoji', selection => {
             console.log(selection);
 
