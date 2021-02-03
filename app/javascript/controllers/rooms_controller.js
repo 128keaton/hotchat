@@ -88,7 +88,7 @@ export default class extends Controller {
                 const matches = field.value.trim().match(invalidRegex);
 
                 tooShort = field.value.trim().length < 5;
-                tooLong = field.value.trim().length > 16;
+                tooLong = field.value.trim().length > 25;
                 invalidCharacters = !!matches && matches.length > 0
             }
         });
