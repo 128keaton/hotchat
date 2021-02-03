@@ -5,6 +5,7 @@ export default class extends Controller {
 
     scrolled = false;
     messages = $('#messages');
+    messageForm = $('.new-message-form');
 
     reset() {
         this.element.reset();
@@ -31,7 +32,11 @@ export default class extends Controller {
             this.scrolled = !(this.messages[0].scrollHeight - this.messages.scrollTop() === this.messages.outerHeight());
         });
 
-        $('#send').focus();
+        setTimeout(() => {
+            this.messages.addClass('show');
+            this.messageForm.addClass('show');
+            $('#send').focus();
+        }, 150);
     }
 
 }

@@ -30,15 +30,6 @@ export default class extends Controller {
         if (forms.length > 1) {
             $(forms[forms.length - 1]).remove();
         }
-
-        setTimeout(() => {
-            const messages = $('.messages');
-            const messageForm = $('.new-message-form');
-
-            messages.addClass('show');
-            messageForm.addClass('show');
-
-        }, 150);
     }
 
     validateForm() {
