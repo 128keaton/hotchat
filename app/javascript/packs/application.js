@@ -15,6 +15,8 @@ import "css/site"
 
 
 require.context('../images', true)
+require.context('../audios', true)
+
 
 Rails.start()
 Turbolinks.start()

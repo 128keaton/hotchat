@@ -13,7 +13,7 @@ export default class extends Controller {
 
         setTimeout(() => {
             this.messages.scrollTop(this.messages[0].scrollHeight);
-        }, 100);
+        }, 200);
     }
 
     updateScroll() {

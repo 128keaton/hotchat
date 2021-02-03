@@ -1,4 +1,4 @@
-<div class="message <%= message_class(message, @user) %>" id="<%= dom_id message %>" data-controller="message">
+<div class="message" id="<%= dom_id message %>" data-controller="message" data-sender-id="<%= message.user.id %>">
   <div class="meta top">
     <span class="created-at text-secondary"><%= message.created_at.to_s(:short) %></span>
   </div>

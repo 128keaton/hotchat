@@ -1,4 +1,4 @@
-<div class="room-wrapper" data-controller="rooms" id="current_room" data-room-id="<%= @room.id %>">
+<div class="room-wrapper" data-controller="rooms" id="current_room" data-room-id="<%= @room.id %>" data-local-user-id="<%= @user.id %>">
   <%= render 'rooms/nav' %>
 
   <%= turbo_stream_from @room %>

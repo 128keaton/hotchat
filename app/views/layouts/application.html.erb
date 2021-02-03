@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hotchat</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Hotchat</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= turbo_include_tags %>
-    <%= stylesheet_pack_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= favicon_link_tag asset_path('icon.png') %>
-  </head>
+  <%= turbo_include_tags %>
+  <%= stylesheet_pack_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= favicon_link_tag asset_path('icon.png') %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<%= audio_tag asset_pack_path('media/audios/silence.wav'), id: "silence", loop: true %>
+<%= audio_tag asset_pack_path('media/audios/chime_bell_ding.wav'), id: "notify" %>
+<%= yield %>
+</body>
 </html>
