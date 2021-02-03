@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 
   def create
     unless message_params[:content].to_s.strip.empty?
-      content = truncate(message_params[:content], :length => 420)
+      content = truncate(message_params[:content])
       @message = @room.messages.create!(content: content, room: @room, user: @user)
 
       respond_to do |format|
@@ -18,6 +18,10 @@ class MessagesController < ApplicationController
   end
 
   private
+
+  def truncate(string, length = 420)
+    (string.size > length) ? string[0, length] : string
+  end
 
   def set_room
     @room = Room.find(@session.room_id)
