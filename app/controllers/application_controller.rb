@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_session
+  skip_forgery_protection
 
   private
 
