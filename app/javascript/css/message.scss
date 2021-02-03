@@ -29,6 +29,7 @@
 
     @media (prefers-color-scheme: dark) {
       background: #303030;
+      color: white;
     }
 
     &:before, &:after {
@@ -43,13 +44,17 @@
       border-left: 20px solid #E5E5EA;
       border-bottom-right-radius: 16px 14px;
       transform: translate(0, -2px);
+
+      @media (prefers-color-scheme: dark) {
+        border-left-color: #000;
+      }
     }
 
     &:after {
       background: white;
 
       @media (prefers-color-scheme: dark) {
-        background: #303030;
+        background: #000;
       }
 
       left: 4px;
