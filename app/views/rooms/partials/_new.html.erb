@@ -1,11 +1,8 @@
-<div class="modal fade" id="newRoomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="newRoomModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Room</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title">New Room</h5>
       </div>
       <%= form_with(model: @room,
                     class: 'form-room-new',
@@ -20,9 +17,12 @@
                     }) do |form|
       %>
         <div class="modal-body">
-          <span class="form-error">Room name must be longer than 5 characters!</span>
+          <span class="form-error form-error-short">Room name must be longer than 5 characters!</span>
+          <span class="form-error form-error-long">Room name cannot be longer than 15 characters!</span>
+          <span class="form-error form-error-invalid-characters">Room name cannot contain invalid characters!</span>
+
           <%= form.label :name, nil, class: 'sr-only' %>
-          <%= form.text_field :name, class: 'form-control mb-3', placeholder: 'Room Name', autofill: 'off', autocomplete: 'off', required: true %>
+          <%= form.text_field :name, class: 'form-control', placeholder: 'Room Name', autofill: 'off', autocomplete: 'off', required: true %>
         </div>
 
         <div class="modal-footer">

@@ -7,6 +7,11 @@
   transition: opacity 100ms ease-in-out;
   background-color: #ececec;
 
+  @media (prefers-color-scheme: dark) {
+    background-color: black;
+    color: white;
+  }
+
   &.show {
     opacity: 1;
   }
@@ -53,6 +58,10 @@
       height: 40px;
       width: 100%;
       border-radius: 25px;
+      @media (prefers-color-scheme: dark) {
+        background-color: #343a40;
+        color: white;
+      }
     }
   }
 }

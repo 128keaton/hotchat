@@ -24,6 +24,11 @@
     height: 100%;
     overflow-y: auto;
 
+    @media (prefers-color-scheme: dark) {
+      border-right: 1px solid #f3f3f32b;
+      background-color: #272626;
+    }
+
     .list-group-item {
       a {
         display: flex;
@@ -40,11 +45,11 @@
 
       &.active {
         a {
-          color: white!important;
+          color: white !important;
         }
 
         .room-id {
-          color: white!important;
+          color: white !important;
           opacity: 0.5;
         }
       }
@@ -58,6 +63,12 @@
     height: 59px;
     background-color: #ececec;
     border-right: 1px solid rgba(0, 0, 0, 0.125);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: black;
+      color: white;
+      border-right: 1px solid rgb(82, 79, 79);
+    }
 
     a {
       padding-left: 0.5em;
@@ -90,7 +101,7 @@
     background: rgba(255, 0, 0, 0.5);
     color: white;
     margin-bottom: 1em;
-    border-radius: 10px;
+    border-radius: 25px;
     opacity: 0;
     height: 0;
     transition: all 300ms ease-in-out;

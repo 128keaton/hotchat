@@ -1,0 +1,57 @@
+.modal {
+  .modal-dialog {
+    .modal-content {
+      @media (prefers-color-scheme: dark) {
+        background: #303030;
+      }
+
+      border-radius: 25px;
+      overflow: hidden;
+
+      .btn {
+        border-radius: 35px;
+        padding: 0.6em 1em;
+      }
+
+      input {
+        border-radius: 25px;
+        height: 45px;
+        margin-bottom: 2em;
+
+        @media (prefers-color-scheme: dark) {
+          background-color: #343a40;
+          color: white;
+        }
+      }
+
+      .modal-header {
+        @media (prefers-color-scheme: dark) {
+          background: #343a40 !important;
+          color: white;
+          border-bottom-color: #303030;
+        }
+
+        align-items: center;
+        justify-content: center;
+
+        .modal-title {
+          font-weight: normal;
+        }
+
+      }
+
+      .modal-footer {
+        justify-content: center;
+        align-items: center;
+
+        .btn {
+          flex: 1;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          border-top-color: #303030;
+        }
+      }
+    }
+  }
+}

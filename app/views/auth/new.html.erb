@@ -15,8 +15,10 @@
     <h1 class="h1 mb-2 font-weight-bold">Hotchat</h1>
     <h3 class="h5 mb-4 w-100 font-weight-light">Create a username to get started</h3>
 
-    <span class="form-error form-error-length">Username must be longer than 5 characters!</span>
-    <span class="form-error form-error-unicode">Username cannot contain Unicode characters!</span>
+    <span class="form-error form-error-short">Username must be longer than 5 characters!</span>
+    <span class="form-error form-error-long">Username cannot be longer than 15 characters!</span>
+    <span class="form-error form-error-invalid-characters">Username cannot contain invalid characters!</span>
+
     <%= form.label :name, nil, class: 'sr-only' %>
     <%= form.text_field :name, class: 'form-control mb-3', placeholder: 'Username', autofill: 'off', autocomplete: 'off', required: true %>
 
