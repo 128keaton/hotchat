@@ -16,6 +16,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
+  config.action_cable.allowed_request_origins = %w[https://hotchat.keaton.dev https://peaceful-sierra-28804.herokuapp.com]
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
