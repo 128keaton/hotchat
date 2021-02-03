@@ -23,6 +23,16 @@ export default class extends Controller {
     }
 
     connect() {
+        const currentRoomID = $('#current_room').data('room-id');
+        const previousRoomListItems = $('.list-group-item.active');
+        const roomListItem = $(`li#room_${currentRoomID}`);
+
+        previousRoomListItems.removeClass('active');
+
+        if (!!roomListItem && !roomListItem.hasClass('active')) {
+            roomListItem.addClass('active');
+        }
+
         this.updateScroll();
         const self = this;
         setInterval(() => {

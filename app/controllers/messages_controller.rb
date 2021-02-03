@@ -10,10 +10,7 @@ class MessagesController < ApplicationController
       @message = @room.messages.create!(content: message_params[:content], room: @room, user: @user)
 
       respond_to do |format|
-        format.turbo_stream {
-          @user = @user
-          #  return render turbo_stream: turbo_stream.append(@message)
-        }
+        format.turbo_stream
         format.html { redirect_to @room }
       end
     end

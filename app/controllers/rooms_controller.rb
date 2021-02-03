@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
     update_room_session(@room.id, @session)
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("current_room", partial: "messages", locals: { room: @room }) }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("current_room", partial: "rooms/partials/messages", locals: { room: @room }) }
       format.html { redirect_to root_path }
     end
   end
@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
     update_room_session(nil, @session)
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("current_room", partial: "empty") }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("current_room", partial: "shared_partials/empty") }
       format.html { redirect_to root_path }
     end
   end
@@ -49,9 +49,7 @@ class RoomsController < ApplicationController
     update_room_session(nil, @session)
 
     respond_to do |format|
-      format.turbo_stream {
-        # render turbo_stream: turbo_stream.replace("current_room", partial: "empty")
-      }
+      format.turbo_stream
       format.html { redirect_to root_path }
     end
   end

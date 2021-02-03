@@ -17,7 +17,8 @@
                       controller: 'rooms',
                       target: 'form.form-room-new',
                       action: 'ajax:beforeSend->rooms#submitForm'
-                    }) do |form| %>
+                    }) do |form|
+      %>
         <div class="modal-body">
           <span class="form-error">Room name must be longer than 5 characters!</span>
           <%= form.label :name, nil, class: 'sr-only' %>

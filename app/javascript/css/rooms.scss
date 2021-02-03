@@ -37,6 +37,17 @@
           opacity: 0.3;
         }
       }
+
+      &.active {
+        a {
+          color: white!important;
+        }
+
+        .room-id {
+          color: white!important;
+          opacity: 0.5;
+        }
+      }
     }
   }
 

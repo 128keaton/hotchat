@@ -1,5 +1,5 @@
 <div class="room-wrapper" data-controller="rooms" id="current_room" data-room-id="<%= @room.id %>" data-local-user-id="<%= @user.id %>">
-  <%= render 'rooms/nav' %>
+  <%= render 'rooms/partials/nav' %>
 
   <%= turbo_stream_from @room %>
   <div class="messages" id="messages">
