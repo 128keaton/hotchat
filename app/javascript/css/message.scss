@@ -8,6 +8,12 @@
   opacity: 0;
   transition: opacity 100ms ease-in-out;
 
+  .meta.top {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+  }
+
   &:first-child {
     margin-top: 1em;
   }
