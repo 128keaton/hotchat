@@ -1,6 +1,5 @@
 .message {
-  margin-bottom: 2em;
-  margin-top: 1em;
+  margin-bottom: 1em;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -8,6 +7,10 @@
   align-items: baseline;
   opacity: 0;
   transition: opacity 100ms ease-in-out;
+
+  &:first-child {
+    margin-top: 1em;
+  }
 
   &.show {
     opacity: 1;

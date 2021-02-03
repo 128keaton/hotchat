@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
 
       respond_to do |format|
         format.turbo_stream {
-          return render turbo_stream: turbo_stream.replace(@message), locals: { user: @user }
+          return render turbo_stream: turbo_stream.update(@message), locals: { user: @user }
         }
         format.html { redirect_to @room }
       end
